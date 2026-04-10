@@ -36,4 +36,5 @@ O projeto será conduzido utilizando uma versão acadêmica simplificada do fram
 ## 6. Composição do Grupo
 * [Lucas Oliveira Rodrigues]() - 202510434
 * [Ronan Gustavo Carletto](https://github.com/carlettoronan) - 202220250
-* [Luis Gustavo Silva Teodoro]() - 
+* [Luis Gustavo Silva Teodoro]() - 202110229
+* [Marco Antonio Roquini Espudario]() - 202010160
