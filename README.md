@@ -34,7 +34,8 @@ O projeto será conduzido utilizando uma versão acadêmica simplificada do fram
 * O desenvolvimento ocorrerá em Sprints incrementais, com o planejamento e a revisão registrados na pasta `docs/sprints/`.
 
 ## 6. Composição do Grupo
-* [Lucas Oliveira Rodrigues]() - 202510434
+* [Lucas Oliveira Rodrigues](https://github.com/luskation) - 202510434
 * [Ronan Gustavo Carletto](https://github.com/carlettoronan) - 202220250
-* [Luis Gustavo Silva Teodoro]() - 202110229
-* [Marco Antonio Roquini Espudario]() - 202010160
+* [Luis Gustavo Silva Teodoro](https://github.com/Luis3Gustavo) - 202110229
+* [Marco Antonio Roquini Espudario](https://github.com/marcoespudario-sys) - 202010160
+* [Gabriel Henrique Balbino de Souza](https://github.com/gabrielh03) - 202210582 
