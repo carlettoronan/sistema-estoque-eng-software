@@ -2,8 +2,8 @@
 
 ## 1. Identificação
 * **Número da sprint:** 01
-* **Período:** 30/03/2026 a 04/04/2026
-* **Data da entrega:** 04/04/2026
+* **Período:** 04/04/2026 a 11/04/2026
+* **Data da entrega:** 11/04/2026
 
 ## 2. Objetivo da sprint
 Definir o problema a ser tratado, estabelecer a visão inicial do produto (Sistema de Estoque), organizar o projeto com base no Scrum, estruturar o repositório no GitHub com os artefatos iniciais exigidos e realizar o planejamento do Product Backlog e das primeiras Sprints.
