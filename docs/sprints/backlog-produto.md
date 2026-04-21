@@ -9,20 +9,30 @@
 ## 2. Requisitos Funcionais (RF)
 | ID | Descrição | Prioridade (MoSCoW) |
 |:---:|---|:---:|
-| RF01 | O sistema deve permitir o cadastro de novos produtos. | Must |
-
+| RF01 | O sistema deve permitir o cadastro, edição, consulta e desativação de usuários (CRUD). | Must |
+| RF02 | O sistema deve realizar a autenticação (login) para identificar o perfil do usuário. | Must |
+| RF03 | O sistema deve permitir o cadastro, edição, consulta e desativação de produtos. | Must |
+| RF04 | O sistema deve permitir o registro de vendas, subtraindo automaticamente o item do estoque. | Must |
+| RF05 | O sistema deve bloquear a venda se a quantidade solicitada for maior que o estoque. | Must |
+| RF06 | O sistema deve emitir um alerta visual para produtos com quantidade abaixo do "Estoque Mínimo". | Should |
+| RF07 | O sistema deve permitir filtrar a visualização do estoque por categorias. | Should |
+| RF08 | O sistema deve permitir o upload de uma imagem (foto) para o produto. | Could |
+| RF09 | O sistema deve gerar e imprimir cupons fiscais das vendas realizadas. | Won't |
 
 ## 3. Requisitos Não Funcionais (RNF)
 | ID | Descrição | Categoria | Prioridade (MoSCoW) |
 |:---:|---|---|:---:|
-| RNF01 | O sistema deve responder às consultas em menos de 10 segundos. | Desempenho | Must |
-
+| RNF01 | O sistema deve restringir o acesso a funções administrativas apenas para o perfil "Admin". | Segurança | Must |
+| RNF02 | O sistema deve armazenar as senhas dos usuários de forma segura. | Segurança | Must |
+| RNF03 | O sistema deve ser desenvolvido como uma aplicação Web. | Arquitetura | Must |
+| RNF04 | O sistema deve armazenar os dados de forma persistente para garantir a integridade do estoque. | Armazenamento | Must |
+| RNF05 | O sistema deve responder às ações de venda em menos de 5 segundos para não atrasar o caixa. | Desempenho | Should |
 
 ## 4. Priorização (Matriz MoSCoW)
-* **Must Have (Essencial):** [Listar IDs dos RFs]
-* **Should Have (Importante):** [Listar IDs dos RFs]
-* **Could Have (Desejável):** [Listar IDs dos RFs]
-* **Won't Have (Fica para depois):** [Listar IDs dos RFs]
+* **Must Have (Essencial):** RF01, RF02, RF03, RF04, RF05. *(O núcleo do sistema de estoque).*
+* **Should Have (Importante):** RF06, RF07. *(Facilita o gerenciamento pelo usuário).*
+* **Could Have (Desejável):** RF08. *(Seria um diferencial visual se sobrar tempo).*
+* **Won't Have (Fica para depois):** RF09. *(Fora do escopo deste semestre acadêmico).*
 
 ## 5. Histórias de Usuário (User Stories)
 
