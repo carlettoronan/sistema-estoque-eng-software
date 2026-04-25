@@ -2,8 +2,8 @@
 
 ## 1. Identificação
 * **Número da sprint:** 02
-* **Período:** 20/04/2026 a 25/04/2026
-* **Data da entrega:** 25/04/2026
+* **Período:** 13/04/2026 a 18/04/2026
+* **Data da entrega:** 18/04/2026
 
 ## 2. Objetivo da sprint
 Realizar a elicitação, análise e priorização dos requisitos para o Sistema de Gestão de Estoque. O foco desta etapa foi definir o escopo funcional para uma loja de variedades, estabelecendo o que é essencial para o Produto Mínimo Viável (MVP) e garantindo a rastreabilidade entre as necessidades dos usuários e as funcionalidades propostas.
