@@ -27,10 +27,13 @@
 | RNF03 | O sistema deve ser desenvolvido como uma aplicação Web. | Arquitetura | Must |
 | RNF04 | O sistema deve armazenar os dados de forma persistente para garantir a integridade do estoque. | Armazenamento | Must |
 | RNF05 | O sistema deve responder às ações de venda em menos de 5 segundos para não atrasar o caixa. | Desempenho | Should |
+| RNF06	| O sistema deve seguir uma arquitetura modular (Frontend e Backend independentes). | Arquitetura | Must |
+| RNF07	| A comunicação entre o Módulo Web e o Servidor deve ser feita via API REST (JSON). | Interoperabilidade | Must |
+| RNF08 | O sistema deve garantir baixo acoplamento entre os módulos de Vendas e Cadastro. | Manutenibilidade | Should |
 
 ## 4. Priorização (Matriz MoSCoW)
-* **Must Have (Essencial):** RF01, RF02, RF03, RF04, RF05. *(O núcleo do sistema de estoque).*
-* **Should Have (Importante):** RF06, RF07. *(Facilita o gerenciamento pelo usuário).*
+* **Must Have (Essencial):** RF01, RF02, RF03, RF04, RF05, RNF01, RNF02, RNF03, RNF04, RNF06, RNF07. *(O núcleo do sistema e da arquitetura base).*
+* **Should Have (Importante):** RF06, RF07, RNF05, RNF08. *(Facilita o gerenciamento e manutenção).*
 * **Could Have (Desejável):** RF08. *(Seria um diferencial visual se sobrar tempo).*
 * **Won't Have (Fica para depois):** RF09. *(Fora do escopo deste semestre acadêmico).*
 
@@ -77,3 +80,4 @@
     > 2. Ao confirmar a venda, a quantidade vendida deve ser subtraída automaticamente do saldo em estoque no banco de dados.  
     > 3. O sistema deve impedir a venda de quantidades superiores ao saldo disponível em estoque.  
     > 4. Cada venda deve registrar automaticamente o ID do vendedor, a data e o valor total da transação.
+    > 5. **(Técnico):** O processamento da baixa de estoque e a validação de saldo devem ser executados exclusivamente pelo Módulo de Lógica de Negócio (Backend), garantindo a responsabilidade única e a segurança da regra.
