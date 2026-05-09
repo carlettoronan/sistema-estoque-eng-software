@@ -35,8 +35,19 @@ Identificamos três desafios técnicos no projeto que podem ser resolvidos com p
 
 ## 4. Representação e Atualização de Modelos
 A aplicação desses padrões altera a estrutura técnica do projeto da seguinte forma:
+
 * **Diagrama de Classes:** Inclusão de uma classe `DatabaseManager` com método de instância única e uma classe `UserFactory` para gerenciar perfis.
 * **Diagrama de Sequência:** O processo de venda agora inclui um passo para "Notificar Observadores" logo após a atualização do saldo no banco de dados.
+
+### 4.1. Diagrama de Classes Atualizado
+Abaixo está o diagrama atualizado contemplando a arquitetura do sistema com os padrões de projeto incorporados:
+
+![Diagrama de Classes](../diagramas/classes.png)
+
+**Resumo Técnico da Modelagem:**
+* **Singleton (`DatabaseManager`):** Centraliza a persistência em uma instância única para otimizar o uso do SQLite.
+* **Factory Method (`UsuarioFactory`):** Desacopla a criação de instâncias de `Administrador`, `Gerente` e `Vendedor`.
+* **Observer (`GestorEstoque` e `PainelAlerta`):** Implementa a reatividade para notificações automáticas de estoque baixo.
 
 ## 5. Registro de Acompanhamento da Sprint
 Durante esta etapa, a equipe realizou as seguintes atividades:
