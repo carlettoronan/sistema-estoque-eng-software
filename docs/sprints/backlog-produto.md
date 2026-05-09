@@ -30,10 +30,12 @@
 | RNF06	| O sistema deve seguir uma arquitetura modular (Frontend e Backend independentes). | Arquitetura | Must |
 | RNF07	| A comunicação entre o Módulo Web e o Servidor deve ser feita via API REST (JSON). | Interoperabilidade | Must |
 | RNF08 | O sistema deve garantir baixo acoplamento entre os módulos de Vendas e Cadastro. | Manutenibilidade | Should |
+| RNF09 | O código-fonte deve aplicar Padrões de Projeto (ex: Singleton, Factory, Observer) para garantir reutilização, escalabilidade e facilidade de manutenção. | Manutenibilidade | Should |
+
 
 ## 4. Priorização (Matriz MoSCoW)
 * **Must Have (Essencial):** RF01, RF02, RF03, RF04, RF05, RNF01, RNF02, RNF03, RNF04, RNF06, RNF07. *(O núcleo do sistema e da arquitetura base).*
-* **Should Have (Importante):** RF06, RF07, RNF05, RNF08. *(Facilita o gerenciamento e manutenção).*
+* **Should Have (Importante):** RF06, RF07, RNF05, RNF08, RNF09. *(Facilita o gerenciamento e manutenção).*
 * **Could Have (Desejável):** RF08. *(Seria um diferencial visual se sobrar tempo).*
 * **Won't Have (Fica para depois):** RF09. *(Fora do escopo deste semestre acadêmico).*
 
@@ -48,6 +50,7 @@
     > 2. O Administrador deve conseguir redefinir a senha de qualquer usuário.  
     > 3. O sistema deve permitir "Desativar" um usuário em vez de apenas eliminar, para manter a integridade dos históricos de vendas, impedindo logins futuros.  
     > 4. Apenas usuários com perfil "Administrador" podem acessar a tela de gestão de usuários.
+    > 5. **(Técnico):** A criação de instâncias de diferentes tipos de usuários no backend deve utilizar o padrão **Factory Method**, centralizando a lógica de permissões.
 
 ---
 
@@ -81,3 +84,4 @@
     > 3. O sistema deve impedir a venda de quantidades superiores ao saldo disponível em estoque.  
     > 4. Cada venda deve registrar automaticamente o ID do vendedor, a data e o valor total da transação.
     > 5. **(Técnico):** O processamento da baixa de estoque e a validação de saldo devem ser executados exclusivamente pelo Módulo de Lógica de Negócio (Backend), garantindo a responsabilidade única e a segurança da regra.
+    > 6. **(Técnico):** A notificação de estoque mínimo (alerta visual) deve ser acionada de forma reativa após a confirmação da venda, utilizando o padrão **Observer** para garantir o baixo acoplamento.
