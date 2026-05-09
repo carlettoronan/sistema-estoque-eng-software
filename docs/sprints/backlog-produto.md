@@ -35,7 +35,7 @@
 
 ## 4. Priorização (Matriz MoSCoW)
 * **Must Have (Essencial):** RF01, RF02, RF03, RF04, RF05, RNF01, RNF02, RNF03, RNF04, RNF06, RNF07. *(O núcleo do sistema e da arquitetura base).*
-* **Should Have (Importante):** RF06, RF07, RNF05, RNF08, RN09. *(Facilita o gerenciamento e manutenção).*
+* **Should Have (Importante):** RF06, RF07, RNF05, RNF08, RNF09. *(Facilita o gerenciamento e manutenção).*
 * **Could Have (Desejável):** RF08. *(Seria um diferencial visual se sobrar tempo).*
 * **Won't Have (Fica para depois):** RF09. *(Fora do escopo deste semestre acadêmico).*
 
