@@ -2,86 +2,47 @@
 
 ## 1. Partes Interessadas (Stakeholders)
 
-* **Administrador (Master):** Responsável pela gestão do sistema e da segurança. Tem acesso irrestrito a todas as funcionalidades, cria e gerencia os perfis de acesso (Vendedores e Gerentes) e garante a integridade do uso do software, podendo redefinir senhas e desativar contas.
-* **Gerente:** Responsável pela operação logística e controle administrativo da loja. Suas principais funções incluem cadastrar novos produtos, atualizar preços, organizar as categorias e monitorar os níveis de estoque para agir sobre alertas de escassez.
-* **Operador/Vendedor:** Responsável pelo atendimento direto ao cliente e giro de mercadorias. Utiliza o sistema para realizar consultas rápidas de disponibilidade e registrar a saída de produtos no momento da venda, garantindo a baixa automática e em tempo real do estoque.
+* **Administrador:** Responsável pela gestão do sistema. Tem acesso irrestrito a todas as funcionalidades e telas.
+* **Gerente:** Responsável pela operação logística e controle administrativo da loja. Suas principais funções incluem cadastrar novos produtos, atualizar preços e gerenciar as movimentações manuais do módulo de Caixa.
+* **Operador de Caixa:** Responsável pelo atendimento direto ao cliente. Utiliza o sistema apenas para realizar consultas rápidas de disponibilidade no estoque e registrar a saída de produtos no momento da venda.
 
 ## 2. Requisitos Funcionais (RF)
 | ID | Descrição | Prioridade (MoSCoW) |
 |:---:|---|:---:|
-| RF01 | O sistema deve permitir o cadastro, edição, consulta e desativação de usuários (CRUD). | Must |
-| RF02 | O sistema deve realizar a autenticação (login) para identificar o perfil do usuário. | Must |
-| RF03 | O sistema deve permitir o cadastro, edição, consulta e desativação de produtos. | Must |
+| RF01 | O sistema deve possuir uma tela de seleção de perfil na inicialização. | Must |
+| RF02 | O sistema deve adaptar a interface ocultando botões baseando-se no perfil selecionado. | Must |
+| RF03 | O sistema deve permitir o cadastro, edição e listagem de produtos genéricos. | Must |
 | RF04 | O sistema deve permitir o registro de vendas, subtraindo automaticamente o item do estoque. | Must |
 | RF05 | O sistema deve bloquear a venda se a quantidade solicitada for maior que o estoque. | Must |
-| RF06 | O sistema deve emitir um alerta visual para produtos com quantidade abaixo do "Estoque Mínimo". | Should |
-| RF07 | O sistema deve permitir filtrar a visualização do estoque por categorias. | Should |
-| RF08 | O sistema deve permitir o upload de uma imagem (foto) para o produto. | Could |
-| RF09 | O sistema deve gerar e imprimir cupons fiscais das vendas realizadas. | Won't |
+| RF06 | O sistema deve possuir um módulo de Caixa para unificar vendas e movimentações manuais (entradas/retiradas). | Must |
+| RF07 | O sistema deve permitir a gestão de clientes e histórico de gastos. | Should |
 
 ## 3. Requisitos Não Funcionais (RNF)
 | ID | Descrição | Categoria | Prioridade (MoSCoW) |
 |:---:|---|---|:---:|
-| RNF01 | O sistema deve restringir o acesso a funções administrativas apenas para o perfil "Admin". | Segurança | Must |
-| RNF02 | O sistema deve armazenar as senhas dos usuários de forma segura. | Segurança | Must |
-| RNF03 | O sistema deve ser desenvolvido como uma aplicação Web. | Arquitetura | Must |
-| RNF04 | O sistema deve armazenar os dados de forma persistente para garantir a integridade do estoque. | Armazenamento | Must |
-| RNF05 | O sistema deve responder às ações de venda em menos de 5 segundos para não atrasar o caixa. | Desempenho | Should |
-| RNF06	| O sistema deve seguir uma arquitetura modular (Frontend e Backend independentes). | Arquitetura | Must |
-| RNF07	| A comunicação entre o Módulo Web e o Servidor deve ser feita via API REST (JSON). | Interoperabilidade | Must |
-| RNF08 | O sistema deve garantir baixo acoplamento entre os módulos de Vendas e Cadastro. | Manutenibilidade | Should |
-| RNF09 | O código-fonte deve aplicar Padrões de Projeto (ex: Singleton, Factory, Observer) para garantir reutilização, escalabilidade e facilidade de manutenção. | Manutenibilidade | Should |
-
+| RNF01 | O sistema deve restringir o acesso a funções administrativas via controle de renderização da UI (Tkinter). | Segurança | Must |
+| RNF02 | O sistema deve ser desenvolvido como uma aplicação Desktop Nativa utilizando Python. | Arquitetura | Must |
+| RNF03 | O sistema deve armazenar os dados de forma persistente em um banco relacional local (SQLite3). | Armazenamento | Must |
+| RNF04 | O sistema deve responder às interações de clique de forma fluida, sem travamentos de ciclo de evento (TclError). | Desempenho | Must |
+| RNF05 | O sistema deve seguir o padrão arquitetural MVC (Model-View-Controller) local. | Arquitetura | Must |
+| RNF06 | O código-fonte deve aplicar Padrões de Projeto (ex: Singleton) para otimizar o uso do banco de dados. | Manutenibilidade | Should |
 
 ## 4. Priorização (Matriz MoSCoW)
-* **Must Have (Essencial):** RF01, RF02, RF03, RF04, RF05, RNF01, RNF02, RNF03, RNF04, RNF06, RNF07. *(O núcleo do sistema e da arquitetura base).*
-* **Should Have (Importante):** RF06, RF07, RNF05, RNF08, RNF09. *(Facilita o gerenciamento e manutenção).*
-* **Could Have (Desejável):** RF08. *(Seria um diferencial visual se sobrar tempo).*
-* **Won't Have (Fica para depois):** RF09. *(Fora do escopo deste semestre acadêmico).*
+* **Must Have:** RF01 a RF06, RNF01 a RNF05. *(O núcleo do sistema PDV).*
+* **Should Have:** RF07, RNF06. *(Facilita o gerenciamento e manutenção técnica).*
 
 ## 5. Histórias de Usuário (User Stories)
 
-### Perfil: Administrador
+### Perfil: Operador de Caixa
+#### US01 - Navegação Restrita
+* **Descrição:** Como Operador de Caixa, eu quero ver apenas os módulos de Vendas e Consulta de Estoque, para não modificar acidentalmente as configurações gerenciais da loja.
+* **Critérios de Aceitação:** Ao selecionar o perfil "Operador", os botões de "Caixa" e "Clientes" não devem ser renderizados na tela principal.
 
-#### US01 - Gestão de Usuários
-* **Descrição:** Como Administrador, eu quero gerenciar os usuários do sistema (vendedores e gerentes) para controlar quem pode realizar operações de estoque e vendas.
-* **Critérios de Aceitação:**
-    > 1. O sistema deve permitir que o Administrador crie novos usuários com: Nome, Login, Senha e Perfil (Admin ou Vendedor).  
-    > 2. O Administrador deve conseguir redefinir a senha de qualquer usuário.  
-    > 3. O sistema deve permitir "Desativar" um usuário em vez de apenas eliminar, para manter a integridade dos históricos de vendas, impedindo logins futuros.  
-    > 4. Apenas usuários com perfil "Administrador" podem acessar a tela de gestão de usuários.
-    > 5. **(Técnico):** A criação de instâncias de diferentes tipos de usuários no backend deve utilizar o padrão **Factory Method**, centralizando a lógica de permissões.
-
----
+#### US02 - Registro de Venda
+* **Descrição:** Como Operador, eu quero registrar a saída de produtos para que o estoque e o caixa sejam atualizados imediatamente.
+* **Critérios de Aceitação:** O sistema deve calcular o total automaticamente e impedir a venda se não houver saldo no banco de dados.
 
 ### Perfil: Gerente
-
-#### US02 - Gestão de Produtos (CRUD)
-* **Descrição:** Como Gerente, eu quero cadastrar e gerenciar produtos com informações detalhadas para que o inventário seja preciso e a localização física dos itens seja rápida.
-* **Critérios de Aceitação:**
-    > 1. O sistema deve impedir o cadastro de dois produtos com o mesmo código de barras.  
-    > 2. Campos obrigatórios: Nome, Preço de Venda, Unidade de Medida (Ex: UN, KG, CX) e Quantidade Inicial maior que zero.  
-    > 3. O sistema deve permitir a edição de qualquer campo do produto e a sua exclusão lógica (desativação).  
-    > 4. O sistema deve permitir a definição de um "Estoque Mínimo" e o registro da "Localização Física" (Seção/Prateleira).  
-    > 5. **(Opcional - Could Have)** O sistema deve permitir o upload de uma imagem (foto) do produto.
-
-#### US03 - Consulta de Inventário e Alertas
-* **Descrição:** Como Gerente, eu quero visualizar a lista de todos os produtos cadastrados para monitorar os níveis de estoque e identificar itens abaixo do mínimo.
-* **Critérios de Aceitação:**
-    > 1. O sistema deve exibir uma tabela com Nome, Categoria, Localização e Quantidade Atual de todos os itens.  
-    > 2. Itens com quantidade igual ou inferior ao "Estoque Mínimo" devem ser destacados visualmente (ex: cor vermelha).  
-    > 3. Deve ser possível filtrar a consulta por Categoria ou busca por Nome.
-
----
-
-### Perfil: Vendedor
-
-#### US04 - Registro de Venda e Baixa de Estoque
-* **Descrição:** Como Vendedor, eu quero registrar a saída de um produto no momento da venda para que o estoque seja atualizado em tempo real.
-* **Critérios de Aceitação:**
-    > 1. O sistema deve permitir a seleção de um produto via busca por nome ou código.  
-    > 2. Ao confirmar a venda, a quantidade vendida deve ser subtraída automaticamente do saldo em estoque no banco de dados.  
-    > 3. O sistema deve impedir a venda de quantidades superiores ao saldo disponível em estoque.  
-    > 4. Cada venda deve registrar automaticamente o ID do vendedor, a data e o valor total da transação.
-    > 5. **(Técnico):** O processamento da baixa de estoque e a validação de saldo devem ser executados exclusivamente pelo Módulo de Lógica de Negócio (Backend), garantindo a responsabilidade única e a segurança da regra.
-    > 6. **(Técnico):** A notificação de estoque mínimo (alerta visual) deve ser acionada de forma reativa após a confirmação da venda, utilizando o padrão **Observer** para garantir o baixo acoplamento.
+#### US03 - Gestão de Caixa e Movimentações
+* **Descrição:** Como Gerente, eu quero registrar retiradas (sangria) ou entradas (suprimento) manuais no caixa, para que o DRE da loja bata com o dinheiro físico no fim do dia.
+* **Critérios de Aceitação:** O módulo de caixa deve exibir um histórico unificado misturando as vendas automáticas com as movimentações manuais inseridas por mim.
