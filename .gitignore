@@ -1,0 +1,22 @@
+# Arquivos de Banco de Dados local (Cada um terá o seu para testar)
+*.db
+*.sqlite3
+
+# Pastas de Ambiente Virtual do Python
+venv/
+env/
+.venv/
+
+# Arquivos temporários e Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Arquivos de sistema operacional (Mac/Windows/Linux)
+*~
+.directory
+.DS_Store
+Thumbs.db
+
+# Configurações do VS Code
+.vscode/
