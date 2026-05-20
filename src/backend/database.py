@@ -1,4 +1,2 @@
-Python
-
-# Arquivo principal da API REST (Flask)
-# Roteamento e inicialização do servidor serão implementados aqui
+# Gerenciamento de persistência e banco de dados (SQLite)
+# Padrão Singleton será implementado aqui
