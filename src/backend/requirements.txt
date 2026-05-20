@@ -1,0 +1,8 @@
+# Framework Web para criar a nossa API
+Flask
+
+# Permite que o Frontend (HTML/JS) consiga conversar com o Backend sem dar erro de segurança (CORS)
+Flask-Cors
+
+# Servidor web leve que será usado quando formos colocar o projeto online
+gunicorn
