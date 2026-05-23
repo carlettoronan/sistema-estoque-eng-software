@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Usuários - Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Painel Administrativo - Usuários</span>
+            <button id="btnVoltar" class="btn btn-sm btn-outline-light">Voltar ao Estoque</button>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm mb-3">
+                    <h5>Cadastrar Novo Usuário</h5>
+                    <form id="formUsuario">
+                        <input type="text" id="usrNome" class="form-control mb-2" placeholder="Nome Completo" required>
+                        <input type="text" id="usrLogin" class="form-control mb-2" placeholder="Login de Acesso" required>
+                        <input type="password" id="usrSenha" class="form-control mb-2" placeholder="Senha Inicial" required>
+                        <select id="usrPerfil" class="form-select mb-3" required>
+                            <option value="">Selecione o Perfil...</option>
+                            <option value="Admin">Administrador</option>
+                            <option value="Gerente">Gerente</option>
+                            <option value="Vendedor">Vendedor</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary w-100">Criar Usuário</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card p-3 shadow-sm">
+                    <h5>Usuários do Sistema</h5>
+                    <table class="table table-striped mt-2">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Login</th>
+                                <th>Perfil</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaUsuarios">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/usuarios.js"></script>
+</body>
+</html>
