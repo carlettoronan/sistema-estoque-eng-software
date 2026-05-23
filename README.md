@@ -28,7 +28,7 @@ Nesta primeira versão (MVP), a aplicação web contemplará as seguintes funcio
 4. **Módulo "Operador":** Acesso restrito à listagem de produtos (sem edição) e à interface de registro de vendas.
 5. **Operação de Venda:** Funcionalidade central onde a venda é registrada e o sistema subtrai a quantidade correspondente automaticamente do banco de dados do estoque.
 
-## 4.1. Implantação e Links da Solução em Produção (MVP)
+### 4.1. Implantação e Links da Solução em Produção (MVP)
 O sistema foi completamente implantado em ambiente de nuvem utilizando uma arquitetura modular com desacoplamento total entre as camadas:
 
 * **Interface da Aplicação (Frontend):** Hosted via [Netlify](https://wwws.netlify.com/) -> `https://deft-monstera-dc34fa.netlify.app/`
