@@ -10,18 +10,21 @@ Planejar a estratégia de testes da solução Web, estabelecendo critérios clar
 
 ## 3. Definição dos Objetivos e Tipos de Teste
 Para o MVP do Sistema de Gestão de Estoque, a estratégia adotada baseia-se em abordagens simplificadas que não exigem frameworks complexos de automação nesta fase inicial acadêmica:
+* **Testes Funcionais de Caixa Preta (Manual):** Validar se o sistema se comporta conforme as Histórias de Usuário, testando as entradas na interface HTML e verificando os resultados na tela.
+* **Teste de Integração (API REST):** Avaliar se o Frontend em JavaScript consegue enviar o JSON corretamente e se o Flask (Backend) responde com o status HTTP adequado (ex: 200 OK, 403 Proibido).
+* **Teste de Regras de Negócio e Segurança:** Foco exclusivo nas permissões (controle de tela por perfil) e na integridade física do estoque (baixa automática e limite de saldo).
 
-1. **Testes Funcionais de Caixa Preta (Manual):** Validar se o sistema se comporta conforme as Histórias de Usuário, testando as entradas na interface HTML e verificando os resultados (ex: cadastro salvo ou erro exibido).
-2. **Teste de Integração (API REST):** Avaliar se o Frontend em JavaScript consegue enviar o JSON corretamente e se o Flask (Backend) responde com o status HTTP adequado (ex: 200 OK, 403 Proibido).
-3. **Teste de Regras de Negócio e Segurança:** Foco exclusivo nas permissões (controle de tela por perfil) e na integridade física do estoque (baixa automática e limite de saldo).
+## 4. Revisão dos Critérios de Aceitação (Garantia de Qualidade)
+Antes da modelagem dos cenários, os critérios de aceitação das User Stories cruciais (US01 e US04) foram revisados para garantir que fossem 100% testáveis:
+* **US01 (Controle de Acesso):** Refinado para garantir que a barreira de segurança funcione tanto visualmente (ocultar botões no Frontend) quanto estruturalmente (barrar requisições diretas na rota `/api/usuarios` no Backend).
+* **US04 (Baixa de Estoque):** Refinado para assegurar a atomicidade da operação — a venda só é registrada se a subtração no banco SQLite for consolidada com sucesso, impedindo saldos negativos.
 
-## 4. Casos e Cenários de Teste (Checklist)
-
-Abaixo estão os cenários críticos que devem ser validados assim que o código estiver operacional:
+## 5. Casos e Cenários de Teste (Checklist)
+Abaixo estão os cenários críticos modelados para validação do MVP:
 
 ### CT01: Validação de Segurança (Acesso por Perfil)
-* **Ação:** Fazer login com um usuário de perfil "Operador".
-* **Resultado Esperado:** O sistema deve ocultar/bloquear no Frontend o acesso aos botões de gestão de usuários (CRUD do Admin) e retornar um Erro 403 (Proibido) se o Operador tentar forçar a rota da API via navegador.
+* **Ação:** Fazer login com um usuário de perfil "Operador/Vendedor".
+* **Resultado Esperado:** O sistema deve ocultar/bloquear no Frontend o acesso aos botões de gestão de usuários (CRUD do Admin) e retornar um Erro HTTP 403 (Forbidden) se o Operador tentar forçar o acesso à rota da API via navegador.
 
 ### CT02: Impedir Venda de Produto Sem Saldo
 * **Ação:** Tentar registrar no carrinho uma venda de 5 unidades de um produto que só possui 2 unidades no banco de dados.
@@ -31,17 +34,16 @@ Abaixo estão os cenários críticos que devem ser validados assim que o código
 * **Ação:** Realizar uma venda bem-sucedida de 1 unidade de um produto X.
 * **Resultado Esperado:** A tabela de venda deve registrar a transação, e a quantidade do produto X na tabela de produtos deve diminuir exatamente em 1 unidade de forma imediata.
 
-## 5. Matriz de Rastreabilidade (Requisitos vs Testes)
-
+## 6. Matriz de Rastreabilidade (Requisitos vs Testes)
 A tabela abaixo comprova que as validações cobrem os requisitos fundamentais priorizados no Backlog (Matriz MoSCoW):
 
 | ID do Requisito | Descrição Resumida | Caso de Teste Relacionado |
-| :--- | :--- | :--- |
-| **RF02 / RNF01** | Autenticação e restrição de funções administrativas. | **CT01** (Validação de Segurança) |
-| **RF05** | Bloquear venda se quantidade for maior que o estoque. | **CT02** (Impedir venda sem saldo) |
-| **RF04** | Subtrair o item do estoque ao registrar venda. | **CT03** (Baixa automática) |
+|:---:|---|---|
+| **RF02 / RNF01** | Autenticação e restrição de funções administrativas. | CT01 (Validação de Segurança) |
+| **RF05** | Bloquear venda se quantidade for maior que o estoque. | CT02 (Impedir venda sem saldo) |
+| **RF04** | Subtrair o item do estoque ao registrar venda. | CT03 (Baixa automática) |
 
-## 6. Registro da Sprint e Incremento
-* **Incremento Produzido:** Elaboração do plano estrutural de testes de software, definição de cenários críticos e elaboração da matriz de rastreabilidade, vinculando a estratégia técnica às necessidades de negócio.
-* **Evidência:** Este documento (`sprint-07.md`) atualizado e aprovado no repositório.
-* **Próximos Passos:** Finalizar o código-fonte da API Flask, criar o banco SQLite e executar o checklist de testes planejado.
+## 7. Registro da Sprint e Incremento
+* **Incremento Produzido:** Elaboração do plano estrutural de testes de software, definição de cenários críticos, revisão dos critérios de aceitação e modelagem da matriz de rastreabilidade.
+* **Evidência:** Este documento (`sprint-07.md`) homologado na pasta de documentação do repositório.
+* **Próximos Passos:** Avançar para a Sprint 08 com a execução prática deste plano, coleta de evidências de sucesso dos testes e consolidação do deploy final em produção.

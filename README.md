@@ -28,6 +28,14 @@ Nesta primeira versão (MVP), a aplicação web contemplará as seguintes funcio
 4. **Módulo "Operador":** Acesso restrito à listagem de produtos (sem edição) e à interface de registro de vendas.
 5. **Operação de Venda:** Funcionalidade central onde a venda é registrada e o sistema subtrai a quantidade correspondente automaticamente do banco de dados do estoque.
 
+### 4.1. Implantação e Links da Solução em Produção (MVP)
+O sistema foi completamente implantado em ambiente de nuvem utilizando uma arquitetura modular com desacoplamento total entre as camadas:
+
+* **Interface da Aplicação (Frontend):** Hosted via [Netlify](https://wwws.netlify.com/) -> `https://sistema-de-estoque-web.netlify.app`
+* **API REST e Banco de Dados (Backend):** Hosted via [PythonAnywhere](https://www.pythonanywhere.com/) -> `https://carlettoronan.pythonanywhere.com/api/usuarios`
+
+*(Nota: Os dados inseridos, alterados ou deletados por qualquer usuário através da interface web são persistidos em tempo real no banco de dados SQLite centralizado no servidor cloud).*
+
 ## 5. Organização Inicial do Projeto em Formato Ágil
 O projeto será conduzido utilizando uma versão acadêmica simplificada do framework **Scrum**. O repositório no GitHub atuará como ambiente oficial de versionamento e documentação técnica. 
 * O **Product Backlog** será mantido no GitHub (utilizando Issues).
