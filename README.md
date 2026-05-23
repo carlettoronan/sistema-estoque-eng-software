@@ -31,7 +31,7 @@ Nesta primeira versão (MVP), a aplicação web contemplará as seguintes funcio
 ### 4.1. Implantação e Links da Solução em Produção (MVP)
 O sistema foi completamente implantado em ambiente de nuvem utilizando uma arquitetura modular com desacoplamento total entre as camadas:
 
-* **Interface da Aplicação (Frontend):** Hosted via [Netlify](https://wwws.netlify.com/) -> `https://deft-monstera-dc34fa.netlify.app/`
+* **Interface da Aplicação (Frontend):** Hosted via [Netlify](https://wwws.netlify.com/) -> `https://sistema-de-estoque-web.netlify.app`
 * **API REST e Banco de Dados (Backend):** Hosted via [PythonAnywhere](https://www.pythonanywhere.com/) -> `https://carlettoronan.pythonanywhere.com/api/usuarios`
 
 *(Nota: Os dados inseridos, alterados ou deletados por qualquer usuário através da interface web são persistidos em tempo real no banco de dados SQLite centralizado no servidor cloud).*
