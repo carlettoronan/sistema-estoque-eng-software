@@ -20,3 +20,21 @@ Thumbs.db
 
 # Configurações do VS Code
 .vscode/
+
+# Arquivos de variáveis de ambiente (onde ficam senhas e chaves secretas locais)
+.env
+.flaskenv
+
+# Arquivos de logs (caso o sistema gere relatórios de erros em texto)
+*.log
+
+# Configurações do PyCharm / IntelliJ (caso alguém do grupo não use o VS Code)
+.idea/
+
+# Pasta de instâncias locais do Flask
+instance/
+
+# Relatórios de cobertura de testes
+.coverage
+htmlcov/
+.pytest_cache/

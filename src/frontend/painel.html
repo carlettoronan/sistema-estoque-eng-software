@@ -21,6 +21,7 @@
 
     <div class="container mt-4">
         <div class="row">
+            
             <div class="col-md-4" id="areaCadastro">
                 <div class="card p-3 shadow-sm mb-3">
                     <h5>Cadastrar Produto</h5>
@@ -34,6 +35,21 @@
             </div>
 
             <div class="col-md-8">
+                
+                <div class="row mb-3">
+                    <div class="col-md-8">
+                        <input type="text" id="buscaProduto" class="form-control" placeholder="Buscar produto pelo nome...">
+                    </div>
+                    <div class="col-md-4">
+                        <select id="ordenaProduto" class="form-select">
+                            <option value="">Ordenar por...</option>
+                            <option value="az">Ordem Alfabética (A-Z)</option>
+                            <option value="menorPreco">Menor Preço</option>
+                            <option value="maiorPreco">Maior Preço</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="card p-3 shadow-sm">
                     <h5>Estoque Atual</h5>
                     <table class="table table-striped mt-2">
@@ -50,9 +66,11 @@
                             </tbody>
                     </table>
                 </div>
+                
             </div>
         </div>
     </div>
+    
     <script src="js/painel.js"></script>
 </body>
 </html>
