@@ -1,4 +1,5 @@
 const API_URL = "https://carlettoronan.pythonanywhere.com/api";
+//const API_URL = "http://127.0.0.1:5000/api";
 
 const urlParams = new URLSearchParams(window.location.search);
 const usuarioNome = urlParams.get('nome');

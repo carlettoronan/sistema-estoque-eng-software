@@ -67,20 +67,37 @@ def listar_produtos():
 @app.route('/api/produtos', methods=['POST'])
 def cadastrar_produto():
     dados = request.json
+    
+    # 1. Pega os dados brutos com segurança (se vier vazio, assume '' ou 0)
+    nome = dados.get('nome', '')
+    preco = dados.get('preco', 0)
+    quantidade = dados.get('quantidade', 0)
+
+    # ==========================================
+    # 2. A CATRACA DE SEGURANÇA (VALIDAÇÃO)
+    # ==========================================
+    if not str(nome).strip() or float(preco) < 0 or int(quantidade) < 0:
+        return jsonify({
+            "sucesso": False, 
+            "mensagem": "Dados inválidos: O nome é obrigatório e os valores não podem ser negativos."
+        }), 400
+    # ==========================================
+
     conn = DatabaseManager.get_connection()
     cursor = conn.cursor()
     
-    # Padroniza o nome: Remove espaços nas pontas e deixa a primeira letra maiúscula (ex: "  pOrtA  " -> "Porta")
-    nome_padronizado = dados['nome'].strip().title()
+    # 3. Padroniza o nome de forma segura, já sabendo que ele não está vazio
+    nome_padronizado = str(nome).strip().title()
     
-    # Verifica se já existe (Case Insensitive não é 100% no SQLite padrão, então comparamos a versão padronizada)
+    # 4. Verifica se já existe no banco
     cursor.execute("SELECT id FROM produtos WHERE nome = ?", (nome_padronizado,))
     if cursor.fetchone():
         return jsonify({"sucesso": False, "mensagem": f"O produto '{nome_padronizado}' já está cadastrado. Edite-o para atualizar o estoque."}), 400
 
+    # 5. Salva no banco de dados
     try:
         cursor.execute("INSERT INTO produtos (nome, preco, quantidade) VALUES (?, ?, ?)", 
-                       (nome_padronizado, float(dados['preco']), int(dados['quantidade'])))
+                       (nome_padronizado, float(preco), int(quantidade)))
         conn.commit()
         return jsonify({"sucesso": True, "mensagem": "Produto cadastrado!"})
     except Exception as e:

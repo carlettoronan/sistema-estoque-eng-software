@@ -1,5 +1,6 @@
 // Conexão com o servidor Flask
 const API_URL = "https://carlettoronan.pythonanywhere.com/api";
+//const API_URL = "http://127.0.0.1:5000/api";
 
 const formLogin = document.getElementById("formLogin");
 if (formLogin) {

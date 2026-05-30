@@ -6,7 +6,7 @@
 * **Data da entrega:** 23/05/2026
 
 ## 2. Objetivo da Sprint
-Planejar a estratégia de testes da solução Web, estabelecendo critérios claros de validação para os principais incrementos do projeto. O foco é garantir que o MVP cumpra as regras de negócio de estoque, respeite as restrições de segurança por perfil e que a API (Backend) e a Interface (Frontend) funcionem em sincronia.
+Planejar a estratégia de testes da solução Web, estabelecendo critérios claros de validação para os principais incrementos do projeto. O foco é garantir que o MVP cumpra as regras de negócio de estoque, respeite as restrições de segurança por perfil, entregue usabilidade na busca de itens e que a API (Backend) e a Interface (Frontend) funcionem em sincronia.
 
 ## 3. Definição dos Objetivos e Tipos de Teste
 Para o MVP do Sistema de Gestão de Estoque, a estratégia adotada baseia-se em abordagens simplificadas que não exigem frameworks complexos de automação nesta fase inicial acadêmica:
@@ -16,23 +16,27 @@ Para o MVP do Sistema de Gestão de Estoque, a estratégia adotada baseia-se em 
 
 ## 4. Revisão dos Critérios de Aceitação (Garantia de Qualidade)
 Antes da modelagem dos cenários, os critérios de aceitação das User Stories cruciais (US01 e US04) foram revisados para garantir que fossem 100% testáveis:
-* **US01 (Controle de Acesso):** Refinado para garantir que a barreira de segurança funcione tanto visualmente (ocultar botões no Frontend) quanto estruturalmente (barrar requisições diretas na rota `/api/usuarios` no Backend).
+* **US01 (Controle de Acesso):** Refinado para garantir que a barreira de segurança funcione visualmente, comparando a renderização da interface entre perfis administrativos e operacionais.
 * **US04 (Baixa de Estoque):** Refinado para assegurar a atomicidade da operação — a venda só é registrada se a subtração no banco SQLite for consolidada com sucesso, impedindo saldos negativos.
 
 ## 5. Casos e Cenários de Teste (Checklist)
 Abaixo estão os cenários críticos modelados para validação do MVP:
 
 ### CT01: Validação de Segurança (Acesso por Perfil)
-* **Ação:** Fazer login com um usuário de perfil "Operador/Vendedor".
-* **Resultado Esperado:** O sistema deve ocultar/bloquear no Frontend o acesso aos botões de gestão de usuários (CRUD do Admin) e retornar um Erro HTTP 403 (Forbidden) se o Operador tentar forçar o acesso à rota da API via navegador.
+* **Ação:** Fazer login com um usuário de perfil "Operador/Vendedor" e comparar com o acesso de um "Gerente/Admin".
+* **Resultado Esperado:** O perfil Gerente deve visualizar todos os botões de ação (Editar/Excluir). Já o sistema deve ocultar/bloquear esses mesmos botões no Frontend para o Operador, restringindo-o apenas à ação de Vender.
 
 ### CT02: Impedir Venda de Produto Sem Saldo
-* **Ação:** Tentar registrar no carrinho uma venda de 5 unidades de um produto que só possui 2 unidades no banco de dados.
+* **Ação:** Tentar registrar no carrinho uma venda de unidades superior ao que o produto possui no banco de dados.
 * **Resultado Esperado:** A API deve recusar a venda e devolver um alerta de erro para o Frontend avisando "Saldo insuficiente em estoque". Nenhuma dedução deve ocorrer no banco SQLite.
 
-### CT03: Baixa Automática de Estoque
-* **Ação:** Realizar uma venda bem-sucedida de 1 unidade de um produto X.
-* **Resultado Esperado:** A tabela de venda deve registrar a transação, e a quantidade do produto X na tabela de produtos deve diminuir exatamente em 1 unidade de forma imediata.
+### CT03: Baixa Automática e Alerta de Estoque
+* **Ação:** Realizar uma venda bem-sucedida de unidades de um produto X.
+* **Resultado Esperado:** A tabela deve registrar a transação e a quantidade do produto X deve diminuir a exata quantidade vendida de forma imediata. Tratando-se de estoque com 5 ou menos unidades (estoque mínimo), o sistema deve sinalizar a linha do produto visualmente (ex: cor vermelha).
+
+### CT04: Usabilidade (Busca e Ordenação Reativa)
+* **Ação:** Digitar fragmentos do nome de um produto na barra de pesquisa e alternar os critérios na caixa de seleção de ordenação (Menor Preço, Maior Preço, A-Z).
+* **Resultado Esperado:** A tabela deve filtrar os produtos em tempo real (no evento de digitação) e reordenar as linhas corretamente, sem necessidade de recarregar a página.
 
 ## 6. Matriz de Rastreabilidade (Requisitos vs Testes)
 A tabela abaixo comprova que as validações cobrem os requisitos fundamentais priorizados no Backlog (Matriz MoSCoW):
@@ -41,7 +45,8 @@ A tabela abaixo comprova que as validações cobrem os requisitos fundamentais p
 |:---:|---|---|
 | **RF02 / RNF01** | Autenticação e restrição de funções administrativas. | CT01 (Validação de Segurança) |
 | **RF05** | Bloquear venda se quantidade for maior que o estoque. | CT02 (Impedir venda sem saldo) |
-| **RF04** | Subtrair o item do estoque ao registrar venda. | CT03 (Baixa automática) |
+| **RF04 / RF06** | Baixa no estoque e alerta visual de estoque mínimo (<= 5). | CT03 (Baixa automática e Alerta) |
+| **RF07**| Funcionalidade de busca e organização de listagem. | CT04 (Busca e Ordenação Reativa) |
 
 ## 7. Registro da Sprint e Incremento
 * **Incremento Produzido:** Elaboração do plano estrutural de testes de software, definição de cenários críticos, revisão dos critérios de aceitação e modelagem da matriz de rastreabilidade.

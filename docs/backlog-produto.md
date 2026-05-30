@@ -15,7 +15,7 @@
 | RF04 | O sistema deve permitir o registro de vendas, subtraindo automaticamente o item do estoque. | Must |
 | RF05 | O sistema deve bloquear a venda se a quantidade solicitada for maior que o estoque. | Must |
 | RF06 | O sistema deve emitir um alerta visual para produtos com quantidade abaixo do "Estoque Mínimo". | Should |
-| RF07 | O sistema deve permitir filtrar a visualização do estoque por categorias. | Should |
+| RF07 | O sistema deve permitir filtrar a visualização do estoque. | Should |
 | RF08 | O sistema deve permitir o upload de uma imagem (foto) para o produto. | Could |
 | RF09 | O sistema deve gerar e imprimir cupons fiscais das vendas realizadas. | Won't |
 
@@ -27,11 +27,10 @@
 | RNF03 | O sistema deve ser desenvolvido como uma aplicação Web. | Arquitetura | Must |
 | RNF04 | O sistema deve armazenar os dados de forma persistente para garantir a integridade do estoque. | Armazenamento | Must |
 | RNF05 | O sistema deve responder às ações de venda em menos de 5 segundos para não atrasar o caixa. | Desempenho | Should |
-| RNF06	| O sistema deve seguir uma arquitetura modular (Frontend e Backend independentes). | Arquitetura | Must |
-| RNF07	| A comunicação entre o Módulo Web e o Servidor deve ser feita via API REST (JSON). | Interoperabilidade | Must |
+| RNF06 | O sistema deve seguir uma arquitetura modular (Frontend e Backend independentes). | Arquitetura | Must |
+| RNF07 | A comunicação entre o Módulo Web e o Servidor deve ser feita via API REST (JSON). | Interoperabilidade | Must |
 | RNF08 | O sistema deve garantir baixo acoplamento entre os módulos de Vendas e Cadastro. | Manutenibilidade | Should |
 | RNF09 | O código-fonte deve aplicar Padrões de Projeto (ex: Singleton, Factory, Observer) para garantir reutilização, escalabilidade e facilidade de manutenção. | Manutenibilidade | Should |
-
 
 ## 4. Priorização (Matriz MoSCoW)
 * **Must Have (Essencial):** RF01, RF02, RF03, RF04, RF05, RNF01, RNF02, RNF03, RNF04, RNF06, RNF07. *(O núcleo do sistema e da arquitetura base).*
@@ -69,7 +68,7 @@
 * **Descrição:** Como Gerente, eu quero visualizar a lista de todos os produtos cadastrados para monitorar os níveis de estoque e identificar itens abaixo do mínimo.
 * **Critérios de Aceitação:**
     > 1. O sistema deve exibir uma tabela com Nome, Categoria, Localização e Quantidade Atual de todos os itens.  
-    > 2. Itens com quantidade igual ou inferior ao "Estoque Mínimo" devem ser destacados visualmente (ex: cor vermelha).  
+    > 2. Itens com quantidade igual ou inferior ao "Estoque Mínimo" (configurado por padrão como 5 unidades) devem ser destacados visualmente (ex: cor vermelha).  
     > 3. Deve ser possível filtrar a consulta por Categoria ou busca por Nome.
 
 ---
