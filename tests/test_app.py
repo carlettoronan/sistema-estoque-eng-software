@@ -1,5 +1,11 @@
+import sys
+import os
 import unittest
-from app import app  # Importa o Flask do seu projeto
+
+# Adiciona a pasta src/backend ao caminho do Python para ele achar o app.py
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src/backend')))
+
+from app import app  # Importa o Flask do projeto
 
 class TestEstoqueAPI(unittest.TestCase):
     def setUp(self):
